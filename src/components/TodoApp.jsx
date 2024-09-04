@@ -26,6 +26,7 @@ const TodoApp = () => {
         backgroundColor: '#F5F5DC',
         boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
         fontSize: '16px',
+        borderRadius: '10px',
         color: '#8B4513'
       },
       duration: 2.5,
