@@ -100,7 +100,7 @@ const TodoApp = () => {
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="bg-white p-6 sm:p-8 rounded-lg shadow-2xl w-full max-w-md sm:max-w-lg md:max-w-3xl mx-auto" 
+        className="bg-white p-6 sm:p-8 rounded-lg shadow-2xl max-w-md sm:max-w-lg md:max-w-3xl mx-auto" 
       >
         <motion.h1 
           initial={{ scale: 0.5, opacity: 0 }}
@@ -130,43 +130,45 @@ const TodoApp = () => {
             Add Todo
           </motion.button>
         </div>
-        <AnimatePresence>
-          {todos.length > 0 ? (
-            todos.map((todo, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -50 }}
-                transition={{ duration: 0.3 }}
+        <div className="max-h-[60vh] overflow-y-auto">
+          <AnimatePresence>
+            {todos.length > 0 ? (
+              todos.map((todo, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -50 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {todo && (
+                    <TodoList
+                      todo={todo}
+                      index={index}
+                      handleInputEdit={handleInputEdit}
+                      isEditing={editingIndex === index}
+                      handleEditChange={handleEditChange}
+                      handleUpdateTodo={handleUpdateTodo}
+                      editingText={editingText}
+                      handleKeyDownEdit={handleKeyDownEdit}
+                      handleDelete={handleDelete}
+                      toggleComplete={toggleComplete}
+                    />
+                  )}
+                </motion.div>
+              ))
+            ) : (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                className="text-center text-lg text-gray-500"
               >
-                {todo && (
-                  <TodoList
-                    todo={todo}
-                    index={index}
-                    handleInputEdit={handleInputEdit}
-                    isEditing={editingIndex === index}
-                    handleEditChange={handleEditChange}
-                    handleUpdateTodo={handleUpdateTodo}
-                    editingText={editingText}
-                    handleKeyDownEdit={handleKeyDownEdit}
-                    handleDelete={handleDelete}
-                    toggleComplete={toggleComplete}
-                  />
-                )}
-              </motion.div>
-            ))
-          ) : (
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5 }}
-              className="text-center text-lg text-gray-500"
-            >
-              No todos added yet.
-            </motion.p>
-          )}
-        </AnimatePresence>
+                No todos added yet.
+              </motion.p>
+            )}
+          </AnimatePresence>
+        </div>
       </motion.div>
     </motion.div>
   );
