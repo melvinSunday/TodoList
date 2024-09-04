@@ -53,6 +53,11 @@ const TodoList = ({
     </motion.div>
   );
 
+
+Modal.propTypes = {
+  onClose: PropTypes.func.isRequired
+};
+
   return (
     <motion.div
       layout
@@ -136,6 +141,7 @@ const TodoList = ({
     </motion.div>
   );
 };
+
 
 TodoList.propTypes = {
   todo: PropTypes.shape({
