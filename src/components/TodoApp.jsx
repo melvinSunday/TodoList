@@ -110,6 +110,7 @@ const TodoApp = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
         className="bg-white p-6 sm:p-8 rounded-lg shadow-2xl max-w-md sm:max-w-lg md:max-w-3xl mx-auto"
+
       >
         <motion.h1
           initial={{ scale: 0.5, opacity: 0 }}
@@ -117,9 +118,9 @@ const TodoApp = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="text-2xl sm:text-4xl text-[#8B4513] font-bold mb-4 sm:mb-6 text-center"
         >
-          Todo List
+          Todo App
         </motion.h1>
-        <div className="flex flex-col sm:flex-row gap-3 mb-4">
+        <div className="flex flex-col sm:flex-row gap-3 mb-3">
           <motion.input
             whileFocus={{ scale: 1.02 }}
             transition={{ duration: 0.2 }}
