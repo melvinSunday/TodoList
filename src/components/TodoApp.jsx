@@ -180,6 +180,7 @@ const TodoApp = () => {
           </AnimatePresence>
         </div>
       </motion.div>
+      <h1 className="text-center text-sm text-gray-500 mt-4">By melvin sundae</h1>
     </motion.div>
   );
 };
