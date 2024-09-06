@@ -18,18 +18,18 @@ const TodoApp = () => {
 
   const openNotificationWithIcon = (type, message) => {
     notification[type]({
-      message: message,
+      message,
+      description: "",
       style: {
-        width: '300px',
-        marginLeft: 'calc(50% - 150px)',
-        border: '2px solid #8B4513',
-        backgroundColor: '#F5F5DC',
-        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-        fontSize: '16px',
-        borderRadius: '10px',
-        color: '#8B4513'
+        width: "300px",
+        marginLeft: "-150px",
+        border: "1px solid #D2B48C",
+        backgroundColor: "#FFF8DC",
+        boxShadow: "0 2px 8px rgba(139, 69, 19, 0.15)",
+        borderRadius: "8px",
       },
-      duration: 2.5,
+      className: "custom-notification",
+      duration: 3,
     });
   };
 
@@ -63,7 +63,10 @@ const TodoApp = () => {
     if (value.trim() !== "") {
       const now = new Date();
       const dateTime = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
-      const newTodos = [...todos, { text: value, completed: false, addedAt: dateTime }];
+      const newTodos = [
+        ...todos,
+        { text: value, completed: false, addedAt: dateTime },
+      ];
       setTodos(newTodos);
       setValue("");
       openNotificationWithIcon("success", "Todo added successfully");
@@ -81,7 +84,12 @@ const TodoApp = () => {
       i === index ? { ...todo, completed: !todo.completed } : todo
     );
     setTodos(updateTodos);
-    openNotificationWithIcon("success", updateTodos[index].completed ? "Marked as complete" : "Marked as incomplete");
+    openNotificationWithIcon(
+      "success",
+      updateTodos[index].completed
+        ? "Marked as complete"
+        : "Marked as incomplete"
+    );
   };
 
   const handleDelete = (index) => {
@@ -90,24 +98,24 @@ const TodoApp = () => {
     openNotificationWithIcon("success", "Todo deleted successfully");
   };
 
-   return (
-    <motion.div 
+  return (
+    <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="px-4" 
+      className="px-4"
     >
-      <motion.div 
+      <motion.div
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="bg-white p-6 sm:p-8 rounded-lg shadow-2xl max-w-md sm:max-w-lg md:max-w-3xl mx-auto" 
+        className="bg-white p-6 sm:p-8 rounded-lg shadow-2xl max-w-md sm:max-w-lg md:max-w-3xl mx-auto"
       >
-        <motion.h1 
+        <motion.h1
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="text-2xl sm:text-4xl text-[#8B4513] font-bold mb-4 sm:mb-6 text-center" 
+          className="text-2xl sm:text-4xl text-[#8B4513] font-bold mb-4 sm:mb-6 text-center"
         >
           Todo List
         </motion.h1>
@@ -176,4 +184,3 @@ const TodoApp = () => {
 };
 
 export default TodoApp;
-//what is spread operator
