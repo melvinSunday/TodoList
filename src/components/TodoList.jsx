@@ -35,7 +35,7 @@ const TodoList = ({
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         exit={{ scale: 0.8, opacity: 0 }}
-        className="bg-[#F5DEB3] p-6 rounded-lg shadow-xl max-w-md w-full m-4"
+        className="bg-[#F5DEB3] p-6 rounded-lg shadow-xl max-w-md w-full m-4 max-h-[80vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-2xl font-bold text-[#8B4513] mb-4 break-words">{todo.text}</h2>

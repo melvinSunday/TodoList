@@ -64,8 +64,8 @@ const TodoApp = () => {
       const now = new Date();
       const dateTime = `${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
       const newTodos = [
-        ...todos,
         { text: value, completed: false, addedAt: dateTime },
+        ...todos,
       ];
       setTodos(newTodos);
       setValue("");
