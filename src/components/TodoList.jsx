@@ -145,19 +145,19 @@ Modal.propTypes = {
 
 TodoList.propTypes = {
   todo: PropTypes.shape({
-    text: PropTypes.string.isRequired,
-    completed: PropTypes.bool.isRequired,
-    addedAt: PropTypes.string.isRequired
+    text: PropTypes.string,
+    completed: PropTypes.bool,
+    addedAt: PropTypes.string
   }),
-  handleDelete: PropTypes.func.isRequired,
-  handleEditChange: PropTypes.func.isRequired,
-  editingText: PropTypes.string.isRequired,
-  handleUpdateTodo: PropTypes.func.isRequired,
-  handleInputEdit: PropTypes.func.isRequired,
-  handleKeyDownEdit: PropTypes.func.isRequired,
-  isEditing: PropTypes.bool.isRequired,
-  index: PropTypes.number.isRequired,
-  toggleComplete: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func,
+  handleEditChange: PropTypes.func,
+  editingText: PropTypes.string,
+  handleUpdateTodo: PropTypes.func,
+  handleInputEdit: PropTypes.func,
+  handleKeyDownEdit: PropTypes.func,
+  isEditing: PropTypes.bool,
+  index: PropTypes.number,
+  toggleComplete: PropTypes.func,
 };
 
 export default TodoList;
