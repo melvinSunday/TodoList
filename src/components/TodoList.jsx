@@ -15,7 +15,7 @@ const TodoList = ({
   isEditing,
   index,
   handleKeyDownEdit,
-  toggleComplete
+  toggleComplete,
 }) => {
   const [showModal, setShowModal] = useState(false);
 
@@ -38,7 +38,9 @@ const TodoList = ({
         className="bg-[#F5DEB3] p-6 rounded-lg shadow-xl max-w-md w-full m-4 max-h-[80vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="text-2xl font-bold text-[#8B4513] mb-4 break-words">{todo.text}</h2>
+        <h2 className="text-2xl font-bold text-[#8B4513] mb-4 break-words">
+          {todo.text}
+        </h2>
         <p className="text-[#A0522D] mb-2">Added: {todo.addedAt}</p>
         <p className="text-[#8B4513] mb-4">
           Status: {todo.completed ? "Completed" : "Pending"}
@@ -53,18 +55,14 @@ const TodoList = ({
     </motion.div>
   );
 
-
-Modal.propTypes = {
-  onClose: PropTypes.func.isRequired
-};
+  Modal.propTypes = {
+    onClose: PropTypes.func.isRequired,
+  };
 
   return (
-    <motion.div
-      layout
-      className="flex flex-col gap-4 mt-2"
-    >
+    <motion.div layout className="flex flex-col gap-4 mt-2">
       {isEditing ? (
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           className="flex flex-col sm:flex-row items-center bg-[#D2B48C] shadow-md rounded-lg p-3 w-full"
@@ -89,7 +87,7 @@ Modal.propTypes = {
           </motion.button>
         </motion.div>
       ) : (
-        <motion.div 
+        <motion.div
           layout
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -98,22 +96,29 @@ Modal.propTypes = {
           className="flex flex-col sm:flex-row items-start sm:items-center bg-[#F5F5DC] shadow-md rounded-lg p-3 w-full"
         >
           <div className="flex-grow mb-2 sm:mb-0">
-            <motion.p 
+            <motion.p
               layout
               onClick={() => toggleComplete(index)}
-              className={`text-[#8B4513] text-base sm:text-lg font-medium cursor-pointer break-words ${todo.completed ? 'line-through text-gray-500' : ''}`}
+              className={`text-[#8B4513] text-base sm:text-lg font-medium cursor-pointer break-words ${
+                todo.completed ? "line-through text-gray-500" : ""
+              }`}
             >
-              {todo.text.length > 20 ? `${todo.text.slice(0, 20)}...` : todo.text}
+              {todo.text.length > 20
+                ? `${todo.text.slice(0,20)}...`
+                : todo.text}
             </motion.p>
-            <div className="text-xs sm:text-sm text-gray-600 break-all mt-1">{todo.addedAt}</div>
+
             {todo.text.length > 20 && (
               <button
                 onClick={() => setShowModal(true)}
-                className="text-[#8B4513] underline mt-1 text-sm hover:text-[#A0522D]"
+                className="text-[#8B4513] underline text-sm hover:text-[#A0522D]"
               >
                 See more
               </button>
             )}
+            <div className="text-xs sm:text-sm text-gray-600 break-all mt-1">
+              {todo.addedAt}
+            </div>
           </div>
           <div className="flex justify-end w-full sm:w-auto">
             <motion.button
@@ -142,12 +147,11 @@ Modal.propTypes = {
   );
 };
 
-
 TodoList.propTypes = {
   todo: PropTypes.shape({
     text: PropTypes.string,
     completed: PropTypes.bool,
-    addedAt: PropTypes.string
+    addedAt: PropTypes.string,
   }),
   handleDelete: PropTypes.func,
   handleEditChange: PropTypes.func,
