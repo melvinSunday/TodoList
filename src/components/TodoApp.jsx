@@ -137,7 +137,7 @@ const TodoApp = () => {
             onClick={addToDo}
             className="bg-[#D2B48C] text-[#8B4513] px-4 py-3 rounded-lg hover:bg-[#DEB887] transition duration-300"
           >
-            Add To do
+            ADD
           </motion.button>
         </div>
         <div className="max-h-[60vh] overflow-y-auto">
