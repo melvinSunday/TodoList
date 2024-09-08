@@ -1,6 +1,6 @@
 import TodoApp from "./components/TodoApp";
 import TodoList from "./components/TodoList";
-
+import '/fonts.css';
 const App = () => {
   return (
     <>

@@ -4,6 +4,7 @@ import { CiTrash } from "react-icons/ci";
 import { FiEdit2 } from "react-icons/fi";
 import { AiOutlineCheck } from "react-icons/ai";
 import { useState } from "react";
+import '/fonts.css';
 
 const TodoList = ({
   todo,

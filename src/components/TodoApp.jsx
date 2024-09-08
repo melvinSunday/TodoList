@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import TodoList from "./TodoList";
 import { notification } from "antd";
-
+import '/fonts.css';
 const TodoApp = () => {
   const [value, setValue] = useState("");
   const [todos, setTodos] = useState(() => {
