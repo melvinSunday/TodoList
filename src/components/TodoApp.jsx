@@ -118,7 +118,7 @@ const TodoApp = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="text-2xl sm:text-4xl text-[#8B4513] font-bold mb-4 sm:mb-6 text-center"
         >
-          Todo App
+          To-do List
         </motion.h1>
         <div className="flex flex-col sm:flex-row gap-3 mb-3">
           <motion.input
@@ -137,7 +137,7 @@ const TodoApp = () => {
             onClick={addToDo}
             className="bg-[#D2B48C] text-[#8B4513] px-4 py-3 rounded-lg hover:bg-[#DEB887] transition duration-300"
           >
-            Add Todo
+            Add To do
           </motion.button>
         </div>
         <div className="max-h-[60vh] overflow-y-auto">
