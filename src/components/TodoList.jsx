@@ -3,9 +3,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { CiTrash } from "react-icons/ci";
 import { FiEdit2 } from "react-icons/fi";
 import { AiOutlineCheck } from "react-icons/ai";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Modal } from "antd";
-import '/fonts.css';
+import "/fonts.css";
 
 const TodoList = ({
   todo,
@@ -21,6 +21,13 @@ const TodoList = ({
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const editInputRef = useRef(null);
+
+  useEffect(() => {
+    if (isEditing && editInputRef.current) {
+      editInputRef.current.focus();
+    }
+  }, [isEditing]);
 
   if (!todo) {
     return null;
@@ -64,24 +71,24 @@ const TodoList = ({
 
   const showDeleteConfirmModal = () => {
     Modal.confirm({
-      title: 'Are you sure you want to delete this todo?',
-      content: 'This action cannot be undone.',
-      okText: 'Yes, delete it',
-      cancelText: 'No, keep it',
+      title: "Are you sure you want to delete this todo?",
+      content: "This action cannot be undone.",
+      okText: "Yes, delete it",
+      cancelText: "No, keep it",
       onOk: () => handleDelete(index),
       okButtonProps: {
         style: {
-          backgroundColor: '#8B4513',
-          borderColor: '#8B4513',
+          backgroundColor: "#8B4513",
+          borderColor: "#8B4513",
         },
       },
       cancelButtonProps: {
         style: {
-          color: '#8B4513',
-          borderColor: '#8B4513',
+          color: "#8B4513",
+          borderColor: "#8B4513",
         },
       },
-      className: 'custom-delete-modal',
+      className: "custom-delete-modal",
     });
   };
 
@@ -94,6 +101,7 @@ const TodoList = ({
           className="flex flex-col sm:flex-row items-center bg-[#D2B48C] shadow-md rounded-lg p-3 w-full"
         >
           <motion.input
+            ref={editInputRef}
             whileFocus={{ scale: 1.02 }}
             transition={{ duration: 0.2 }}
             type="text"
@@ -130,7 +138,7 @@ const TodoList = ({
               }`}
             >
               {todo.text.length > 20
-                ? `${todo.text.slice(0,20)}...`
+                ? `${todo.text.slice(0, 20)}...`
                 : todo.text}
             </motion.p>
 
@@ -167,7 +175,9 @@ const TodoList = ({
         </motion.div>
       )}
       <AnimatePresence>
-        {showModal && <TodoModal todo={todo} onClose={() => setShowModal(false)} />}
+        {showModal && (
+          <TodoModal todo={todo} onClose={() => setShowModal(false)} />
+        )}
       </AnimatePresence>
     </motion.div>
   );
