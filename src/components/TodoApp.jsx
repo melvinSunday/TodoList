@@ -1,16 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import TodoList from "./TodoList";
 import { notification } from "antd";
-import '/fonts.css';
+import "/fonts.css";
+import { Context } from "../context/ContextProvider";
 const TodoApp = () => {
-  const [value, setValue] = useState("");
-  const [todos, setTodos] = useState(() => {
-    const savedTodos = localStorage.getItem("todos");
-    return savedTodos ? JSON.parse(savedTodos) : [];
-  });
-  const [editingText, setEditingText] = useState("");
-  const [editingIndex, setEditingIndex] = useState(null);
+  const {
+    value,
+    setValue,
+    todos,
+    setTodos,
+    editingText,
+    setEditingText,
+    editingIndex,
+    setEditingIndex,
+  } = useContext(Context);
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -110,8 +114,8 @@ const TodoApp = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
         className="bg-white p-6 sm:p-8 rounded-lg shadow-2xl max-w-md sm:max-w-lg md:max-w-3xl mx-auto"
-
       >
+
         <motion.h1
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -137,10 +141,10 @@ const TodoApp = () => {
             onClick={addToDo}
             className="bg-[#D2B48C] text-[#8B4513] px-4 py-3 rounded-lg hover:bg-[#DEB887] transition duration-300"
           >
-            ADD
+            Add Task
           </motion.button>
         </div>
-        <div className="max-h-[60vh] overflow-y-auto">
+        <div className="max-h-[50vh] overflow-y-auto">
           <AnimatePresence>
             {todos.length > 0 ? (
               todos.map((todo, index) => (
@@ -180,7 +184,9 @@ const TodoApp = () => {
           </AnimatePresence>
         </div>
       </motion.div>
-      <h1 className="text-center text-sm text-gray-500 mt-4">By melvin sundae</h1>
+      <h1 className="text-center text-sm text-gray-500 mt-4">
+        By melvin sundae
+      </h1>
     </motion.div>
   );
 };
