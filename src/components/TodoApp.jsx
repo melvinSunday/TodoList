@@ -113,16 +113,17 @@ const TodoApp = () => {
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="bg-white p-6 sm:p-8 rounded-lg shadow-2xl max-w-md sm:max-w-lg md:max-w-3xl mx-auto"
+        className="bg-white bg-opacity-50 backdrop-filter backdrop-blur-lg p-6 sm:p-8 rounded-lg shadow-2xl max-w-md sm:max-w-lg md:max-w-3xl mx-auto"
       >
-
         <motion.h1
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="text-2xl sm:text-4xl text-[#8B4513] font-bold mb-4 sm:mb-6 text-center"
+          className="text-3xl sm:text-5xl text-[#8B4513] font-bold mb-6 sm:mb-8 text-center tracking-wide uppercase"
         >
-          To-do List
+          <span className="bg-gradient-to-r from-[#5D3A1A] to-[#A0522D] text-transparent bg-clip-text">
+            To-do List
+          </span>
         </motion.h1>
         <div className="flex flex-col sm:flex-row gap-3 mb-3">
           <motion.input
@@ -176,7 +177,7 @@ const TodoApp = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="text-center text-lg text-gray-500"
+                className="text-center text-lg text-[#8B4513] "
               >
                 No todos added yet.
               </motion.p>

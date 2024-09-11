@@ -5,9 +5,9 @@ export const Context = createContext();
 export const ContextProvider = ({ children }) => {
   const [value, setValue] = useState("");
   const [todos, setTodos] = useState(() => {
-    const savedTodos = localStorage.getItem("todos");
-    return savedTodos ? JSON.parse(savedTodos) : [];
-  });
+    const savedItems = localStorage.getItem("todos")
+    return savedItems ? JSON.parse(savedItems) : []
+  })
   const [editingText, setEditingText] = useState("");
   const [editingIndex, setEditingIndex] = useState(null);
 
