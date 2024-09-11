@@ -1,9 +1,10 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import TodoList from "./TodoList";
 import { notification } from "antd";
 import "/fonts.css";
 import { Context } from "../context/ContextProvider";
+
 const TodoApp = () => {
   const {
     value,
@@ -16,9 +17,17 @@ const TodoApp = () => {
     setEditingIndex,
   } = useContext(Context);
 
+  const inputRef = useRef(null);
+
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   const openNotificationWithIcon = (type, message) => {
     notification[type]({
@@ -127,6 +136,7 @@ const TodoApp = () => {
         </motion.h1>
         <div className="flex flex-col sm:flex-row gap-3 mb-3">
           <motion.input
+            ref={inputRef}
             whileFocus={{ scale: 1.02 }}
             transition={{ duration: 0.2 }}
             placeholder="Add todo..."
@@ -140,7 +150,7 @@ const TodoApp = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={addToDo}
-            className="bg-[#D2B48C] text-[#8B4513] px-4 py-3 rounded-lg hover:bg-[#DEB887] transition duration-300"
+            className="bg-[#7c4614] bg-opacity-70 backdrop-filter backdrop-blur-md text-[#ffecde] px-4 py-3 rounded-lg hover:bg-[#8B4513] hover:bg-opacity-70 transition duration-300"
           >
             Add Task
           </motion.button>
